@@ -81,5 +81,6 @@ The project status is active, and developement is in progress.
 
 ## Contact Info
 - Website [Ayronada Smith](https://www.ayronada.com)
-- GitHub [@NadaSmith](https://github.com/MadaSmith)
+- GitHub [@NadaSmith](https://github.com/NadaSmith)
 - LinkedIn [My LinkedIn](https://www.linkedin.com/in/ayronadasmith/)
+- Blog [Tech Blog](https://www.medium.com/@ayronada)
