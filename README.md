@@ -39,7 +39,10 @@ The Parachute Game is a two-player turn-based guessing game. Each player takes t
 In this second paragraph I will explain my experience in developing this game as well what I have learned and imporved in my skill set.
 
 ### Built With
-
+- JavaScript 
+- HTML
+- CSS
+- DOM Manipulation
 
 ## Features
 
@@ -71,11 +74,7 @@ To run the Parachute Game on your local machine, follw these steps:
 I am not  open to contributions at this time. Once my project is complete, I will be open to contributions to implement ideas under the [Stretch Goals](#stretch-goals) section.
 
 ## Acknowledgements
-<!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For exmpale -->
-
-- [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
+I would like to thank my Per Scholas coding bootcamp for the assignment. 
 
 ## Project Status
 The project status is active, and developement is in progress.
