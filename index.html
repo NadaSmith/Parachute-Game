@@ -1,276 +1,115 @@
-// Define game variables that will store the corresponding information
-let currentQuestion;
-let secretWord;
-let guessedLetters;
-let incorrectGuesses;
-let player1Score;
-let player2Score;
-let currentPlayer;
-let totalTurns;
-const maxRounds = 10;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nada's Parachute Game</title>
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <h1>Parachute Game</h1>
 
-// Array with game data consisting of questions and answer pairs
-const questionWordPairs = [
-  { question: "Inside which HTML element do we put JavaScript code?", word: "script" },
-  { question: "Which of the following methods is used to access HTML ID elements using JavaScript?", word: "getelementbyid" },
-  { question: "When an operator's value is NULL, the typeof returned by the unary operator is?", word: "undefined" },
-  { question: "What function is used to serialize an object into a JSON string in JavaScript?", word: "stringify" },
-  { question: "How to stop an interval timer in JavaScript?", word: "clearinterval" },
-  { question: "Which company developed JavaScript?", word: "netscape" },
-  { question: "What allows the user to enter input by providing a text box?", word: "prompt" },
-  { question: "What is used to represent no value or no object?", word: "null" },
-  { question: "What is the output for a variable that is not assigned to any value?", word: "undefined" },
-  { question: "What is the data type of variables?", word: "object" }
-];
+    <!--make background picture on canvas.com-->
+    <div id="container">
 
-// Initialize game variables and start the game
-const startGame = () => {
-  player1Score = 0;
-  player2Score = 0;
-  totalTurns = 0;
-  currentPlayer = 1;
-  alphabetButtonListeners();
-  nextRound();
-};
+        <!--contains the question-->
+        <div id="question-container">
+            <h2 id="q-title">Question</h2>
+            <div id="question"></div>
+        </div>
 
-// Select a random question-answer pair from the questionWordPairs array and initialize the game variables
-const selectRandomQuestion = () => {
-  const randomIndex = Math.floor(Math.random() * questionWordPairs.length);
-  currentQuestion = questionWordPairs[randomIndex].question;
-  secretWord = questionWordPairs[randomIndex].word;
-  guessedLetters = [];
-  incorrectGuesses = 0;
-};
+        <!--alphabet input buttons for guesses-->
+        <div id="container-two">
 
-// Return the secret word with hidden letters
-const getSecretWordWithPlaceholders = () => {
-  let wordWithPlaceholders = "";
-  for (let letter of secretWord) {
-    if (guessedLetters.includes(letter)) {
-      wordWithPlaceholders += letter;
-    } else {
-      wordWithPlaceholders += "_";
-    }
-    wordWithPlaceholders += " ";
-  }
-  return wordWithPlaceholders.trim();
-};
+            <!--display for the amount of incorrect guesses-->
+            <div class="lit" id="incorrect-guesses">
+                <div>X</div>
+                <div>X</div>
+                <div>X</div>
+                <div>X</div>
+                <div>X</div>
+            </div>
 
-// Update the display with game elements
-const updateDisplay = () => {
-  document.getElementById("question").textContent = currentQuestion;
-  document.getElementById("secret-word").textContent = getSecretWordWithPlaceholders();
-  document.getElementById("player1-score").textContent = player1Score.toString();
-  document.getElementById("player2-score").textContent = player2Score.toString();
-  document.getElementById("turn-count").textContent = totalTurns.toString();
-  document.getElementById("current-player").textContent = `Player ${currentPlayer}`;
-};
-
-// Handle player turns
-const handlePlayerTurn = (letter) => {
-    const guessedLetter = letter.trim().toLowerCase();
-    if (guessedLetter.length === 1 && guessedLetters.indexOf(guessedLetter) === -1) {
-      guessedLetters.push(guessedLetter);
-      if (!secretWord.includes(guessedLetter)) {
-        incorrectGuesses++;
-        const incorrectGuessesElements = document.querySelectorAll("#incorrect-guesses > div");
-        incorrectGuessesElements[incorrectGuesses - 1].classList.add("lit");
-      }
-      updateDisplay();
-      updateParachuteImage();
-    }
-  
-    if (isPlayerTurnOver()) {
-      if (isGameOver()) {
-        setTimeout(displayGameOver, 2000);
-      } else {
-        if (currentPlayer === 2) {
-          totalTurns++; // Increment turn count after each player's turn
-        }
-        switchTurns(); // Switch turns between players
-        nextRound();
-      }
-    }
-  
-    const alphabetButton = document.querySelector(`#alphabet button[data-letter="${guessedLetter}"]`);
-    alphabetButton.disabled = true; // Disable button after submission
-};
-
-
-// Check if the player's turn is over
-const isPlayerTurnOver = () => {
-    const guessedWord = getSecretWordWithPlaceholders().split(" ").join("");
-    const isCorrectGuess = guessedWord === secretWord;
+            <div id="alphabet">
+                <div id="left">
+                    <button>a</button>
+                    <button>c</button>
+                    <button>e</button>
+                    <button>g</button>
+                    <button>i</button>
+                    <button>k</button>
+                    <button>m</button>
+                    <button>o</button>
+                    <button>q</button>
+                    <button>s</button>
+                    <button>u</button>
+                    <button>w</button>
+                    <button>y</button>
+                </div>
     
-    if (isCorrectGuess) {
-      if (currentPlayer === 1) {
-        player1Score += 1;
-      } else {
-        player2Score += 1;
-      }
-    }
-  
-    if (incorrectGuesses === 5 || isCorrectGuess) {
-      return true;
-    } else {
-      return false;
-    }
-};
+                <div id="right">
+                    <button>b</button>
+                    <button>d</button>
+                    <button>f</button>
+                    <button>h</button>
+                    <button>j</button>
+                    <button>l</button>
+                    <button>n</button>
+                    <button>p</button>
+                    <button>r</button>
+                    <button>t</button>
+                    <button>v</button>
+                    <button>x</button>
+                    <button>z</button>
+                </div>
+            </div>
+        </div>
 
-// Function to switch players
-const switchPlayers = () => {
-    currentPlayer = currentPlayer === 1 ? 2 : 1;
-};
+        <!--contains the parachute image-->
+        <div id="parachute-container">
+            <img id="parachute-image" src="images/parachute-0.png" alt="Parachute">
+        </div>
 
-// Check if the game has ended
-const isGameOver = () => {
-  return totalTurns === maxRounds;
-};
+        <!--contains the blank box for answers-->
+        <div id="secret-word"></div>
+       
+    </div>
 
-// Function to start the next round of the game
-// Function to start the next round of the game
-const nextRound = () => {
-    selectRandomQuestion();
-    updateDisplay();
-    totalTurns++;
-    resetAlphabetButtons(); // Reset alphabet buttons for the new round
-    resetIncorrectGuesses(); // Reset incorrect guess divs
-    updateParachuteImage(); // Update parachute image based on incorrect guesses
-  
-    // Display the current player
-    document.getElementById("current-player").textContent = `Player ${currentPlayer}`;
-};
+    <!--container to display game over-->
+    <div class="no-dim" id="game-over">
+        <div id="outcome-message">
+            <button id="next-player">Next Player</button>
+        </div>
+    </div>
 
-// Reset the incorrect guesses
-const resetIncorrectGuesses = () => {
-    const incorrectGuessesElements = document.querySelectorAll("#incorrect-guesses > div");
-    incorrectGuessesElements.forEach(element => {
-      element.classList.remove("lit");
-    });
-};
+    <div class="no-dim" id="game-over-player2">
+        <div id="outcome-message-player2">
+            <button id="next-player2">Next Player</button>
+        </div>
+    </div>
 
-// Update the parachute image and check game over condition after a player's turn
-const updateParachuteImage = () => {
-    const parachuteImage = document.getElementById("parachute-image");
-    parachuteImage.src = `images/parachute-${incorrectGuesses}.png`;
-  
-    const incorrectGuessesElements = document.querySelectorAll("#incorrect-guesses > div");
-    incorrectGuessesElements.forEach((element, index) => {
-        if (index < incorrectGuesses) {
-            element.classList.add("lit");
-        } else {
-            element.classList.remove("lit");
-        }
-    });
+    <div>
+        <div id="player1">
+            <h3>Player 1 Score</h3>
+            <div id="player1-score"></div>
+        </div>
+    
+        <div id="player2">
+            <h3>Player 2 Score</h3>
+            <div id="player2-score"></div>
+        </div>
+    </div>
 
-    if (isPlayerTurnOver()) {
-        setTimeout(() => {
-            if (getSecretWordWithPlaceholders() === secretWord) {
-                currentPlayer === 1 ? player1Score++ : player2Score++;
-            }
-
-            if (isGameOver()) {
-                setTimeout(displayGameOver, 2000);
-            } else {
-                setTimeout(() => {
-                    currentPlayer = currentPlayer === 1 ? 2 : 1;
-                    nextRound();
-                }, 2000);
-            }
-        }, 2000);
-    }
-};
-
-// Function to reset the alphabet buttons
-const resetAlphabetButtons = () => {
-    const alphabetButtons = document.querySelectorAll("#alphabet button");
-    alphabetButtons.forEach(button => {
-      button.disabled = false; // Re-enable the button
-    });
-    guessedLetters = []; // Reset guessed letters for the new round
-    incorrectGuesses = 0; // Reset incorrect guesses for the new round
-    const incorrectGuessesElements = document.querySelectorAll("#incorrect-guesses > div");
-    incorrectGuessesElements.forEach(element => {
-      element.classList.remove("lit");
-    });
-};
-
-// Function to enable the alphabet buttons
-const enableAlphabetButtons = () => {
-    const alphabetButtons = document.querySelectorAll("#alphabet button");
-    alphabetButtons.forEach(button => {
-      button.disabled = false; // Re-enable the button
-    });
-};
-
-// Function to reset the game and start a new game
-const resetAndRestartGame = () => {
-  resetGame();
-  startGame();
-};
-
-// Function to display the game over message and update scores
-const displayGameOver = () => {
-  const gameContainer = document.getElementById("container");
-  gameContainer.classList.add("dim");
-
-  const outcomeMessage = document.getElementById("outcome-message");
-  const nextPlayerButton = document.getElementById("next-player");
-  const gameOverDiv = document.getElementById("game-over");
-
-  if (player1Score > player2Score) {
-    outcomeMessage.textContent = "Player 1 wins the game!";
-  } else if (player1Score < player2Score) {
-    outcomeMessage.textContent = "Player 2 wins the game!";
-  } else {
-    outcomeMessage.textContent = "It's a tie!";
-  }
-
-  gameOverDiv.style.display = "block";
-  gameOverDiv.classList.remove("dim");
-
-  // Remove existing event listener for the "Play Again" button
-  nextPlayerButton.removeEventListener("click", resetAndRestartGame);
-
-  // Add new event listener for the "Play Again" button
-  nextPlayerButton.addEventListener("click", resetAndRestartGame);
-};
-
-// Reset the game and start a new round
-const resetGame = () => {
-    player1Score = 0;
-    player2Score = 0;
-    totalTurns = 0;
-    currentPlayer = 1;
-    guessedLetters = [];
-    incorrectGuesses = 0;
-    updateDisplay();
-  
-    resetAlphabetButtons(); // Reset alphabet buttons
-    resetIncorrectGuesses(); // Reset incorrect guess divs
-  
-    // Remove event listeners from alphabet buttons
-    const alphabetButtons = document.querySelectorAll("#alphabet button");
-    alphabetButtons.forEach(button => {
-      button.removeEventListener("click", handlePlayerTurn);
-    });
-  
-    // Reattach event listeners to alphabet buttons
-    alphabetButtonListeners();
-};
-
-// Assign event listeners to alphabet buttons
-const alphabetButtonListeners = () => {
-    const alphabetButtons = document.querySelectorAll("#alphabet button");
-  
-    alphabetButtons.forEach(button => {
-      const letter = button.textContent;
-      button.addEventListener("click", () => {
-        handlePlayerTurn(letter);
-        button.disabled = true; // Disable button after submission
-      });
-    });
-  };
-
-// Start the game
-startGame();
+    <div id="rounds">
+        <h3>Rounds</h3>
+        <div id="turn-count"></div>
+    </div>
+    
+    <div id="current-player-container">
+        <h3>Player</h3>
+        <div id="current-player"></div>
+    </div>
+    
+    <script defer src="app.js"></script>
+</body>
+</html>
