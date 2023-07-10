@@ -1,1 +1,293 @@
+*, *::before, *::after { 
+    box-sizing:border-box;
+}
+
+body {
+    text-align: center;
+}
+
+h1 {
+    padding-bottom: 1em;
+    font-size: 55px;
+}
+
+.dim {
+   opacity: 0.5;
+   pointer-events: none;
+}
+
+#container {
+    background-image: url(background-image.png);
+    margin: 50px auto; /*centers div*/
+    width: 1100px;
+    height: 800px;
+    border: 2px solid black;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    box-shadow: 10px 10px 10px 10px;
+}
+
+#question-container {
+    border:2px black solid;
+    background-color: white;
+    width: 300px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 5%;
+    left: 40%;
+    box-shadow: 5px 5px 5px 5px;
+    border-radius: 5px;
+}
+
+#question {
+    margin-top: 1em;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+#q-title {
+    background-color: black;
+    border-radius: 5px;
+    color: white;
+    width: 100%;
+    margin-bottom: 0.8em;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 63%;
+}
+
+#parachute-image {
+    /*how to populate different pitures here when a question is wrong*/
+    width: 350px;
+    height: 350px;
+    position: absolute;
+    top: 17%;
+    left: 2%;
+}
+
+#secret-word {
+    width: 850px;
+    height: 90px;
+    font-size: 5em;
+    position: absolute;
+    top: 85%;
+    left: 1%;
+}
+
+#container-two {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    position: absolute;
+    top: 5%;
+    left: 75%;
+}
+
+#incorrect-guesses {
+    width: 250px;
+    height: 50px;
+    font-size: 40px;
+    color: gray;
+    display: flex;
+    justify-content: space-around;
+}
+
+.lit {
+    color: black;
+}
+
+.parachute {
+    width: 350px;
+    height: 350px;
+}
+
+#incorrect-guesses > .lit {
+    color: black;
+    cursor: pointer;
+}
+
+#alphabet {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+    margin-left: 10%;
+    margin-bottom: 5%;
+}
+   
+#left, #right {
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+button {
+    width: 70px;
+    height: 40px;
+    margin: 5px;
+    background-color: gainsboro;
+    cursor: pointer;
+    text-transform: capitalize;
+    box-shadow: 2px 2px 2px 2px;
+    border-radius: 3px;
+}
+
+button:hover {
+    transform: scale(1.2);
+}
+
+button:focus {
+    color: black;
+}
+
+
+.no-dim { 
+    border: solid black;
+    position: absolute;
+    top: 50%;
+    left: 38%;
+    width: 505px;
+    height: 100px;
+    display: none;
+    opacity: 1;
+}
+
+#player1 > h3 {
+    position: absolute;
+    left: 20%;
+    top: 5%;
+    font-size: 25px;
+}
+
+#player2 > h3 {
+    position: absolute;
+    left: 70%;
+    top: 5%;
+    font-size: 25px;
+}
+
+#rounds > h3 {
+    position: absolute;
+    left: 55%;
+    top: 8%;
+    font-size: 25px;
+}
+
+#current-player-container > h3 {
+    position: absolute;
+    left: 40%;
+    top: 8%;
+    font-size: 25px;
+}
+
+#player1-score {
+    border: solid black;
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px 10px;
+    font-size: 20px;
+}
+
+#player2-score {
+    border: solid black;
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    top: 10%;
+    left: 70%;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px 10px;
+    font-size: 20px;
+}
+
+#turn-count {
+    border: solid black;
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    top: 13%;
+    left: 55%;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px 10px;
+    font-size: 20px;
+}
+
+#current-player {
+    border: solid black;
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    top: 13%;
+    left: 40%;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px 10px;
+    font-size: 20px;
+}
+
+#game-over {
+    border: solid black;
+    width: 500px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 37%;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px 10px;
+    font-size: 20px;
+}
+
+#outcome-message > button {
+    border: solid black;
+    background-color: grey;
+    color: black;
+    width: 80px;
+    height: 55px;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px 5px;
+    font-size: 20px;
+}
+#game-over-player2 {
+    border: solid black;
+    width: 500px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 37%;
+    border-radius: 8px;
+    box-shadow: 10px 10px 10px 10px;
+    font-size: 20px;
+}
+  
+#outcome-message-player2 > button {
+    border: solid black;
+    background-color: grey;
+    color: black;
+    width: 80px;
+    height: 55px;
+    position: absolute;
+    right: 5%;
+    bottom: 5%;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px 5px;
+    font-size: 20px;
+}
+
 
