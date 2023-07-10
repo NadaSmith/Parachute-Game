@@ -6,12 +6,8 @@
 
 <div align="center">
   <h3>
-    <a href="https://{your-demo-link.your-domain}">
+    <a href="https://https://youtu.be/04qxqkaX7no">
       Demo
-    </a>
-    <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
-      Game
     </a>
 </div>
 
@@ -19,7 +15,7 @@
 
 ## Table of Contents
 - [Overview](#overview)
-  - [Built With](#built-with)
+  - [Programs Used](#programs-used)
 - [Features](#features)
 - [How To Play](#how-to-play)
 - [Getting Started](#getting-started)
@@ -32,15 +28,13 @@
 <!-- OVERVIEW -->
 
 ## Overview
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
-
-[![Demo Video] ()] (https://youtu.be/04qxqkaX7no)
+[![Demo Video](thumbnailimage.png)](https://youtu.be/04qxqkaX7no)
 
 The Parachute Game is a two-player turn-based guessing game. Each player takes turns guessing letters in a secret word before running out of the allowed incorrect guesses.  The game ends when one player correctly guesses the word or when either player reaches the maximum number of incorrect guesses. The players can play multiple rounds, and the game keeps track of their scores.
 
 In this second paragraph I will explain my experience in developing this game as well what I have learned and imporved in my skill set.
 
-### Built With
+### Programs Used 
 - JavaScript 
 - HTML
 - CSS
