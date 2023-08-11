@@ -34,7 +34,7 @@ The Parachute Game is a two-player turn-based guessing game. Each player takes t
 
 In this second paragraph I will explain my experience in developing this game as well what I have learned and imporved in my skill set.
 
-### Programs Used 
+### Technologies Used 
 - JavaScript 
 - HTML
 - CSS
@@ -57,7 +57,7 @@ To run the Parachute Game on your local machine, follw these steps:
 1. Clone this repository: `git clone https://github.com/NadaSmith/parachute-game.git`.
 2. Navigte to the project directory: `cd parachute-game`.
 3. Open the `index.html` file in your web browswer.
-4. Start pl;aying the game by taking turns guessing letters and have fun!
+4. Start playing the game by taking turns guessing letters and have fun!
 
 ## Stretch Goals
 - Impletment a hinting system to provide cues fo rht esecret word.
